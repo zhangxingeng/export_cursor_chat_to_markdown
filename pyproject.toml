@@ -1,0 +1,21 @@
+[project]
+name = "export-cursor-chat"
+version = "0.1.0"
+description = "a simple tool for anyone to easily display or export cursor chat history"
+readme = "README.md"
+authors = [
+    { name = "Shane", email = "43120257+zhangxingeng@users.noreply.github.com" }
+]
+requires-python = ">=3.12,<4"
+dependencies = [
+    "typer",
+    "streamlit",
+]
+
+[project.scripts]
+export-cursor-chat = "export_cursor_chat:main"
+ecc = "export_cursor_chat:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"

@@ -1,0 +1,81 @@
+# export-cursor-chat
+
+Export your Cursor editor chat history to Markdown or HTML, or browse it in a Streamlit UI.
+
+### Features
+
+- Export to Markdown (.md)
+- Export to HTML (.html) styled with Tailwind CSS
+- Interactive Streamlit UI to browse conversations
+
+### Install
+
+Use uv/pip to install in editable mode for development:
+
+```bash
+uv sync
+```
+
+For development:
+
+```bash
+uv pip install -e .
+```
+
+### Usage (CLI)
+
+The CLI is built with Typer. See docs: [Typer](https://typer.tiangolo.com/).
+
+```bash
+# Show help
+export-cursor-chat --help
+
+# Export Markdown
+export-cursor-chat markdown --out-dir chat_output_md
+
+# Export HTML
+export-cursor-chat html --out-dir chat_output_html
+
+# Launch UI (Streamlit)
+export-cursor-chat ui
+
+# Use a specific DB path (Windows)
+export-cursor-chat markdown --db-path "C:\\Users\\<you>\\AppData\\Roaming\\Cursor\\User\\globalStorage\\state.vscdb"
+
+# Use a specific DB path (macOS)
+export-cursor-chat markdown --db-path "/Users/$USER/Library/Application Support/Cursor/User/globalStorage/state.vscdb"
+
+# Use a specific DB path (Linux)
+export-cursor-chat markdown --db-path "$HOME/.config/Cursor/User/globalStorage/state.vscdb"
+```
+
+Notes:
+
+- The tool auto-detects the default DB path across Windows, macOS, and Linux. If omitted, it tries these locations:
+  - Windows: `%APPDATA%/Cursor/User/globalStorage/state.vscdb`
+  - macOS: `~/Library/Application Support/Cursor/User/globalStorage/state.vscdb`
+  - Linux: `~/.config/Cursor/User/globalStorage/state.vscdb`
+- If you keep multiple Cursor profiles or the DB is elsewhere, pass `--db-path` explicitly (works for `markdown`, `html`, and `ui`).
+- You can dump raw JSON rows for debugging with `--dump-raw <dir>`.
+
+### Streamlit UI
+
+You can also run the Streamlit app directly:
+
+```bash
+streamlit run app.py
+```
+
+Optionally set an environment variable to point at a specific DB:
+
+```bash
+set CURSOR_CHAT_DB_PATH=C:\\path\\to\\state.vscdb  # PowerShell: $env:CURSOR_CHAT_DB_PATH = "..."
+```
+
+### Library structure
+
+- `src/export_cursor_chat/cursor_to_md.py`: SQLite read-only access, parsing into dataclasses, session building, utility dumps.
+- `src/export_cursor_chat/to_markdown.py`: Markdown generation and export.
+- `src/export_cursor_chat/to_html.py`: HTML generation with Tailwind and export.
+- `src/export_cursor_chat/main.py`: Typer CLI with commands: `markdown`, `html`, `ui`.
+- `app.py`: Streamlit UI for browsing chats.

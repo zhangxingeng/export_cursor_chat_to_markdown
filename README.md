@@ -1,4 +1,4 @@
-# export-cursor-chat
+# Export Your Cursor Chat to Markdown, HTML or Directly View with Streamlit
 
 Export your Cursor editor chat history to Markdown or HTML, or browse it in a Streamlit UI.
 

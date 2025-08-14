@@ -8,7 +8,7 @@ Export your Cursor editor chat history to Markdown or HTML, or browse it in a St
 - Export to HTML (.html) styled with Tailwind CSS
 - Interactive Streamlit UI to browse conversations
 
-### Install
+### Install (Super simple)
 
 Use uv/pip to install in editable mode for development:
 
@@ -16,27 +16,27 @@ Use uv/pip to install in editable mode for development:
 uv sync
 ```
 
-For development:
+If you are overwhelmed by the details, and not sure what does any of this means, then just run:
 
 ```bash
-uv pip install -e .
+export-cursor-chat ui
 ```
 
-### Usage (CLI)
+That's It! Enjoy 😊
 
-The CLI is built with Typer. See docs: [Typer](https://typer.tiangolo.com/).
+### Advanced Usage (CLI)
 
 ```bash
-# Show help
+# Show help (How do I use this?)
 export-cursor-chat --help
 
-# Export Markdown
+# Export Markdown (You want to see it in markdown format)
 export-cursor-chat markdown --out-dir chat_output_md
 
-# Export HTML
+# Export HTML (You want to see it in html format)
 export-cursor-chat html --out-dir chat_output_html
 
-# Launch UI (Streamlit)
+# Launch UI via Streamlit (You want to see it in a website fashion)
 export-cursor-chat ui
 
 # Use a specific DB path (Windows)
@@ -58,7 +58,7 @@ Notes:
 - If you keep multiple Cursor profiles or the DB is elsewhere, pass `--db-path` explicitly (works for `markdown`, `html`, and `ui`).
 - You can dump raw JSON rows for debugging with `--dump-raw <dir>`.
 
-### Streamlit UI
+### Advanced: Streamlit UI
 
 You can also run the Streamlit app directly:
 
